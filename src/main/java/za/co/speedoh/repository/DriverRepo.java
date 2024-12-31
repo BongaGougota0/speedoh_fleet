@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 import za.co.speedoh.model.Driver;
 
 @Repository
-public interface DriverRepo extends JpaRepository<Long, Driver> {
+public interface DriverRepo extends JpaRepository<Driver, Long> {
+    Driver findDriverByDriverEmail(String driverEmail);
 }

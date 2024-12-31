@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 import za.co.speedoh.model.Vehicle;
 
 @Repository
-public interface VehicleRepo extends JpaRepository<Long, Vehicle> {
+public interface VehicleRepo extends JpaRepository<Vehicle, Long> {
+    Vehicle findVehicleByVehicleNumber(String vehicleNumber);
 }
