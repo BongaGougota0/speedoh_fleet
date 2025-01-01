@@ -1,5 +1,6 @@
 package za.co.speedoh.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.co.speedoh.dto.VehicleDto;
@@ -15,12 +16,12 @@ public class VehiclesController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addVehicle(@RequestBody VehicleDto vehicleDto){
+    public ResponseEntity<VehicleDto> addVehicle(@RequestBody VehicleDto vehicleDto){
         VehicleDto vehicleDto1 = vehiclesService.saveVehicle(vehicleDto);
         if(vehicleDto1 == null){
             return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(vehicleDto1);
     }
 
     @GetMapping("/all")
