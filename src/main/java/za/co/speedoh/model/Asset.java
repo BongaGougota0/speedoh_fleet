@@ -1,12 +1,18 @@
 package za.co.speedoh.model;
 
-import jakarta.persistence.MappedSuperclass;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import java.time.LocalDateTime;
 
-@MappedSuperclass
+
 public class Asset{
+    @CreatedDate
     LocalDateTime createdDate;
+    @LastModifiedDate
     LocalDateTime lastModifiedDate;
+    @LastModifiedDate
     LocalDateTime lastServiceDate;
+    @JsonIgnore
     LocalDateTime nextServiceDate;
 }

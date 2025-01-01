@@ -15,6 +15,19 @@ public class VehiclesService {
         this.vehicleRepo = vehicleRepo;
     }
 
+    public VehicleDto saveVehicle(VehicleDto vehicleDto) {
+        if(vehicleRepo.findVehicleByVehicleNumber(vehicleDto.vehicleNumber) != null){
+            return null;
+        }
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleNumber(vehicleDto.vehicleNumber);
+        vehicle.setVehicleType(vehicleDto.vehicleType);
+        vehicle.setVehicleImage(vehicleDto.vehicleImage);
+        vehicle.setVehicleName(vehicleDto.vehicleName);
+        vehicle.setVehicleImageUrl(vehicleDto.vehicleImageUrl);
+        return mapToDtos(vehicleRepo.save(vehicle));
+    }
+
     public ArrayList<VehicleDto> getAllVechicles(){
         return vehicleRepo.findAll().stream().map(this::mapToDtos)
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);

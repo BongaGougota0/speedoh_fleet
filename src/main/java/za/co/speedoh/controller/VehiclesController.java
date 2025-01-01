@@ -14,6 +14,15 @@ public class VehiclesController {
         this.vehiclesService = vehiclesService;
     }
 
+    @PostMapping("/add")
+    public ResponseEntity<?> addVehicle(@RequestBody VehicleDto vehicleDto){
+        VehicleDto vehicleDto1 = vehiclesService.saveVehicle(vehicleDto);
+        if(vehicleDto1 == null){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/all")
     public ResponseEntity<ArrayList<VehicleDto>> getAllVehicles(){
         return ResponseEntity.ok().body(vehiclesService.getAllVechicles());

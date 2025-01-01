@@ -15,6 +15,15 @@ public class DriversController {
         this.driverService = driverService;
     }
 
+    @PostMapping("/add")
+    public ResponseEntity<?> addDriver(@RequestBody DriverDto driverDto){
+        DriverDto driverDto1 = driverService.saveDriver(driverDto);
+        if(driverDto1 == null){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping(value = "/all")
     public ResponseEntity<ArrayList<DriverDto>> getAllDrivers(){
         ArrayList<DriverDto> drivers = driverService.getAllDrivers();
