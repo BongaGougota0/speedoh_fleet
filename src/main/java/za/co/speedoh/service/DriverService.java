@@ -24,6 +24,10 @@ public class DriverService {
         return mapToDtos(driverRepo.save(driver));
     }
 
+    public Driver getDriverByDriverEmail(String driverEmail){
+        return driverRepo.findDriverByDriverEmail(driverEmail);
+    }
+
     public DriverDto getDriverById(String driverId){
         return mapToDtos(driverRepo.getOne(Long.parseLong(driverId)));
     }
